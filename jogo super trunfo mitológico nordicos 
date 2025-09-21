@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Estrutura da carta
+typedef struct {
+    char nome[20];
+    int forca;
+    int magia;
+    int sabedoria;
+} Carta;
+
+int main() {
+    // Cartas de exemplo do tema nórdico
+    Carta carta1 = {"Odin", 9, 10, 10};
+    Carta carta2 = {"Thor", 10, 7, 8};
+
+    int opcao;
+
+    printf("=== SUPER TRUNFO - MITOLOGIA NORDICA ===\n");
+    printf("Carta 1: %s (Forca: %d, Magia: %d, Sabedoria: %d)\n", 
+           carta1.nome, carta1.forca, carta1.magia, carta1.sabedoria);
+    printf("Carta 2: %s (Forca: %d, Magia: %d, Sabedoria: %d)\n\n", 
+           carta2.nome, carta2.forca, carta2.magia, carta2.sabedoria);
+
+    printf("Escolha a opcao de comparacao:\n");
+    printf("1 - Forca\n");
+    printf("2 - Magia\n");
+    printf("3 - Sabedoria\n");
+    printf("4 - Forca + Magia\n");
+    printf("5 - Magia + Sabedoria\n");
+    printf("Opcao: ");
+    scanf("%d", &opcao);
+
+    switch(opcao) {
+        case 1: // Comparar Força
+            if(carta1.forca > carta2.forca)
+                printf("%s venceu na Forca!\n", carta1.nome);
+            else if(carta2.forca > carta1.forca)
+                printf("%s venceu na Forca!\n", carta2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 2: // Comparar Magia
+            if(carta1.magia > carta2.magia)
+                printf("%s venceu na Magia!\n", carta1.nome);
+            else if(carta2.magia > carta1.magia)
+                printf("%s venceu na Magia!\n", carta2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 3: // Comparar Sabedoria
+            if(carta1.sabedoria > carta2.sabedoria)
+                printf("%s venceu na Sabedoria!\n", carta1.nome);
+            else if(carta2.sabedoria > carta1.sabedoria)
+                printf("%s venceu na Sabedoria!\n", carta2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 4: // Comparar Força + Magia (usando operador ternário)
+            ( (carta1.forca + carta1.magia) > (carta2.forca + carta2.magia) ) ?
+                printf("%s venceu na soma Forca+Magia!\n", carta1.nome) :
+                ( (carta1.forca + carta1.magia) < (carta2.forca + carta2.magia) ?
+                    printf("%s venceu na soma Forca+Magia!\n", carta2.nome) :
+                    printf("Empate na soma!\n") );
+            break;
+
+        case 5: // Comparar Magia + Sabedoria
+            if((carta1.magia + carta1.sabedoria) > (carta2.magia + carta2.sabedoria))
+                printf("%s venceu na soma Magia+Sabedoria!\n", carta1.nome);
+            else if((carta2.magia + carta2.sabedoria) > (carta1.magia + carta1.sabedoria))
+                printf("%s venceu na soma Magia+Sabedoria!\n", carta2.nome);
+            else
+                printf("Empate na soma!\n");
+            break;
+
+        default:
+            printf("Opcao invalida!\n");
+    }
+
+    return 0;
+}
